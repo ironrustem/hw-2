@@ -18,7 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let navigationController = UINavigationController(rootViewController: UIViewController())
+        let navigationController = UINavigationController(rootViewController: ChatViewController())
+ 
+
+        UINavigationBar.appearance().backgroundColor = Asset.Colors.navigationBar.color
+        
+        UINavigationBar.appearance().titleTextAttributes = [.font: UIFont(name: "Habibi", size: 20)]
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
