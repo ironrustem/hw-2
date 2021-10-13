@@ -18,7 +18,7 @@ class TextFieldWithButton: UITextField {
     private enum Constants {
         static let buttonSize = CGSize(width: 32, height: 32)
         static let placeholderLabelInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)
-        static let sendButtonInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: -4)
+        static let sendButtonInset = UIEdgeInsets(top: 4, left: 4, bottom: -4, right: -4)
     }
     
     // MARK: - Properties
