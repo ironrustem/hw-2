@@ -27,6 +27,11 @@
 		572C18C62709D68B001B2A6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572C18C52709D68B001B2A6D /* SceneDelegate.swift */; };
 		572C18CD2709D68C001B2A6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 572C18CC2709D68C001B2A6D /* Assets.xcassets */; };
 		572C18D02709D68C001B2A6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572C18CE2709D68C001B2A6D /* LaunchScreen.storyboard */; };
+		57A1F23527171E76008B15A5 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A1F23427171E76008B15A5 /* ChatCell.swift */; };
+		57A1F23827173EE1008B15A5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A1F23727173EE1008B15A5 /* ProfileViewController.swift */; };
+		57C4E4EB2716012600A71F17 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C4E4EA2716012600A71F17 /* ChatListViewController.swift */; };
+		57C4E4EE271621A400A71F17 /* PinnedChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C4E4ED271621A400A71F17 /* PinnedChatsCell.swift */; };
+		57C4E4F02716235E00A71F17 /* PinnedChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C4E4EF2716235E00A71F17 /* PinnedChatCollectionViewCell.swift */; };
 		72A7EC74E0EEEC05D8F17189 /* Pods_hw2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD22168EF23680D797C829 /* Pods_hw2.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +58,11 @@
 		572C18CC2709D68C001B2A6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		572C18CF2709D68C001B2A6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		572C18D12709D68C001B2A6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57A1F23427171E76008B15A5 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		57A1F23727173EE1008B15A5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		57C4E4EA2716012600A71F17 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		57C4E4ED271621A400A71F17 /* PinnedChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedChatsCell.swift; sourceTree = "<group>"; };
+		57C4E4EF2716235E00A71F17 /* PinnedChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D48571A1FA3BEA0A216BA20 /* Pods-hw2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hw2.debug.xcconfig"; path = "Target Support Files/Pods-hw2/Pods-hw2.debug.xcconfig"; sourceTree = "<group>"; };
 		69DD22168EF23680D797C829 /* Pods_hw2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hw2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E7F03281981FF2154526B74 /* Pods-hw2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hw2.release.xcconfig"; path = "Target Support Files/Pods-hw2/Pods-hw2.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +83,7 @@
 		57109EB5270DA13800FC73E6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				57C4E4EC271620D400A71F17 /* ChatList */,
 				57109EC4270DACA200FC73E6 /* TextFields */,
 				57109EBE270DA59700FC73E6 /* Chat */,
 			);
@@ -90,6 +101,8 @@
 		57109EB8270DA3A900FC73E6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				57A1F23627173EC8008B15A5 /* Profile */,
+				57C4E4E92716010600A71F17 /* ChatList */,
 				57109EB9270DA3C700FC73E6 /* Chat */,
 			);
 			path = Modules;
@@ -220,6 +233,32 @@
 			path = hw2;
 			sourceTree = "<group>";
 		};
+		57A1F23627173EC8008B15A5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				57A1F23727173EE1008B15A5 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		57C4E4E92716010600A71F17 /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				57C4E4EA2716012600A71F17 /* ChatListViewController.swift */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
+		57C4E4EC271620D400A71F17 /* ChatList */ = {
+			isa = PBXGroup;
+			children = (
+				57C4E4ED271621A400A71F17 /* PinnedChatsCell.swift */,
+				57C4E4EF2716235E00A71F17 /* PinnedChatCollectionViewCell.swift */,
+				57A1F23427171E76008B15A5 /* ChatCell.swift */,
+			);
+			path = ChatList;
+			sourceTree = "<group>";
+		};
 		B61AAA81EAA2C8F6D275E5FC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,8 +377,12 @@
 			files = (
 				57109ED0270DB8F900FC73E6 /* Asset.swift in Sources */,
 				572C18C42709D68B001B2A6D /* AppDelegate.swift in Sources */,
+				57A1F23827173EE1008B15A5 /* ProfileViewController.swift in Sources */,
+				57C4E4EB2716012600A71F17 /* ChatListViewController.swift in Sources */,
+				57A1F23527171E76008B15A5 /* ChatCell.swift in Sources */,
 				57109EC0270DA5B900FC73E6 /* MessageSendCell.swift in Sources */,
 				57109EBD270DA55500FC73E6 /* Message.swift in Sources */,
+				57C4E4EE271621A400A71F17 /* PinnedChatsCell.swift in Sources */,
 				57109EBB270DA3DA00FC73E6 /* ChatViewController.swift in Sources */,
 				57109ED8270DF70800FC73E6 /* StandardDateHandler.swift in Sources */,
 				57109ED3270DEBF300FC73E6 /* MessageRepositry.swift in Sources */,
@@ -348,6 +391,7 @@
 				57109ED5270DEFDB00FC73E6 /* MessageGetCell.swift in Sources */,
 				57109ECF270DB8F900FC73E6 /* Texts.swift in Sources */,
 				57109EDB270DF73D00FC73E6 /* DateFormatter+Extensions.swift in Sources */,
+				57C4E4F02716235E00A71F17 /* PinnedChatCollectionViewCell.swift in Sources */,
 				57109EE2270E18C800FC73E6 /* UIFont + Extensions.swift in Sources */,
 				57109EC2270DAC1200FC73E6 /* MessageFieldView.swift in Sources */,
 				57109EDD270E0EEA00FC73E6 /* MessageHeaderView.swift in Sources */,

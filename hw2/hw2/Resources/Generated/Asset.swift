@@ -24,6 +24,7 @@ internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal enum Colors {
     internal static let backGround = ColorAsset(name: "Colors/backGround")
+    internal static let black = ColorAsset(name: "Colors/black")
     internal static let borderView = ColorAsset(name: "Colors/borderView")
     internal static let getMessage = ColorAsset(name: "Colors/getMessage")
     internal static let getMessageText = ColorAsset(name: "Colors/getMessageText")
@@ -33,10 +34,13 @@ internal enum Asset {
     internal static let messageTextField = ColorAsset(name: "Colors/messageTextField")
     internal static let messageTextFieldText = ColorAsset(name: "Colors/messageTextFieldText")
     internal static let navigationBar = ColorAsset(name: "Colors/navigationBar")
+    internal static let profileDescription = ColorAsset(name: "Colors/profileDescription")
     internal static let sentMessage = ColorAsset(name: "Colors/sentMessage")
     internal static let sentMessageTime = ColorAsset(name: "Colors/sentMessageTime")
+    internal static let titleColor = ColorAsset(name: "Colors/titleColor")
   }
   internal static let backIcon = ImageAsset(name: "backIcon")
+  internal static let logout = ImageAsset(name: "logout")
   internal static let profilePhoto = ImageAsset(name: "profilePhoto")
   internal static let send = ImageAsset(name: "send")
 }

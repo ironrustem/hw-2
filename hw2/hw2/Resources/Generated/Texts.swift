@@ -18,6 +18,15 @@ internal enum Text {
     }
   }
 
+  internal enum ChatList {
+    /// Pinned
+    internal static let pinned = Text.tr("Localizable", "ChatList.pinned")
+    /// Who do you want to chat with?
+    internal static let searchController = Text.tr("Localizable", "ChatList.searchController")
+    /// Messages
+    internal static let title = Text.tr("Localizable", "ChatList.title")
+  }
+
   internal enum Common {
     /// Применить
     internal static let apply = Text.tr("Localizable", "Common.apply")
@@ -61,6 +70,11 @@ internal enum Text {
     internal static let update = Text.tr("Localizable", "Common.update")
     /// Да
     internal static let yes = Text.tr("Localizable", "Common.yes")
+  }
+
+  internal enum Profile {
+    /// Logout
+    internal static let logout = Text.tr("Localizable", "Profile.logout")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

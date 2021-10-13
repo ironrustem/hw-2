@@ -24,3 +24,10 @@ Common.apply = "Применить";
 // MARK: - Chat
 Chat.MessageField.placeHolder = "Type your message here...";
 
+// MARK: - ChatList
+ChatList.title = "Messages";
+ChatList.pinned = "Pinned";
+ChatList.searchController = "Who do you want to chat with?";
+
+// MARK: - Profile
+Profile.logout = "Logout";

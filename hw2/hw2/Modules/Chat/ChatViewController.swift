@@ -15,6 +15,7 @@ class ChatViewController: UIViewController {
         static let messageSendCellReuseIdentifier = "messageSendCellReuseIdentifier"
         static let messageGetCellReuseIdentifier = "messageGetCellReuseIdentifier"
         static let tableViewInset = UIEdgeInsets(top: 0, left: 11, bottom: 0, right: -19)
+        static let keyboardOffsetDelta: CGFloat = 25.0
     }
     
     private lazy var tableView: UITableView = {
@@ -40,12 +41,30 @@ class ChatViewController: UIViewController {
     private var dictionaryMessage: [String: [Message]]?
     private var dates = [String]()
     
+    private var keyboardHeiht: CGFloat?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configNavigationBar()
         addSubViews()
         makeConstraints()
         getMessages()
+        registerForKeyboardNotifications()
+        setGestureRecognizer()
+    }
+    
+    @objc private func back() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func setGestureRecognizer() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func getMessages() {
@@ -62,6 +81,42 @@ class ChatViewController: UIViewController {
     func configNavigationBar() {
         view.backgroundColor = Asset.Colors.backGround.color
         navigationItem.title = "Jessica Thompson"
+        
+        let sendButton = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(back))
+        sendButton.image = Asset.backIcon.image.withRenderingMode(.alwaysOriginal)
+        self.navigationItem.hidesBackButton = true
+        self.navigationItem.leftBarButtonItem = sendButton
+    }
+    
+    deinit {
+        removeKeyboardNotifications()
+    }
+    
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func kbWillShow(_ notification: Notification) {
+        let userInfo = notification.userInfo
+        let kbFrameSize = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let duration:TimeInterval = (userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+        UIView.animate(withDuration: duration, animations: { () -> Void in
+            self.view.frame.origin.y = -kbFrameSize.height + Constants.keyboardOffsetDelta // Move view 150 points upward
+            })
+    }
+    
+    @objc func kbWillHide(_ notification: Notification) {
+        let userInfo = notification.userInfo
+        let duration:TimeInterval = (userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+        UIView.animate(withDuration: duration, animations: { () -> Void in
+            self.view.frame.origin.y = 0 // Move view 150 points upward
+            })
     }
     
     func addSubViews() {
@@ -123,7 +178,7 @@ extension ChatViewController: UITableViewDataSource {
         }
         return UITableViewCell()
     }
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 50
     }
