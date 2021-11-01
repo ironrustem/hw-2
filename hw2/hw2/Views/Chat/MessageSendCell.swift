@@ -12,7 +12,7 @@ class MessageSendCell: UITableViewCell {
     // MARK: - Constants
     
     private enum Constants {
-        static let containerViewInset = UIEdgeInsets(top: -4, left: -8, bottom: 4, right: 8)
+        static let containerViewInset = UIEdgeInsets(top: -4, left: -8, bottom: -4, right: 8)
         static let titleLabelInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: -8)
         static let dateLabelInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: -10)
     }
@@ -74,28 +74,21 @@ class MessageSendCell: UITableViewCell {
     }
     
     func makeConstraints() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                             constant: Constants.titleLabelInset.right).isActive = true
-        titleLabel.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: Constants.titleLabelInset.left).isActive = true
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.trailing.leading.equalToSuperview().inset(Constants.titleLabelInset)
+        }
         
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor,
-                                               constant: Constants.containerViewInset.left).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor,
-                                                constant: Constants.containerViewInset.right).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor,
-                                                constant: Constants.containerViewInset.bottom).isActive = true
-        containerView.topAnchor.constraint(equalTo: titleLabel.topAnchor,
-                                                constant: Constants.containerViewInset.top).isActive = true
+        containerView.snp.makeConstraints { make in
+            make.edges.equalTo(titleLabel).inset(Constants.containerViewInset)
+        }
         
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: Constants.dateLabelInset.top).isActive = true
-        dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        dateLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                          constant: Constants.dateLabelInset.bottom).isActive = true
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(containerView.snp.bottom).inset(Constants.dateLabelInset)
+            make.trailing.equalToSuperview()
+            make.leading.equalTo(containerView)
+            make.bottom.equalToSuperview().inset(8)
+        }
     }
 }
 

@@ -17,8 +17,8 @@ class TextFieldWithButton: UITextField {
     
     private enum Constants {
         static let buttonSize = CGSize(width: 32, height: 32)
-        static let placeholderLabelInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)
-        static let sendButtonInset = UIEdgeInsets(top: 4, left: 4, bottom: -4, right: -4)
+        static let placeholderLabelInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        static let sendButtonInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     }
     
     // MARK: - Properties
@@ -85,20 +85,18 @@ class TextFieldWithButton: UITextField {
     }
     
     func makeConstraints() {
-        sendButton.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Constants.sendButtonInset.right).isActive = true
-        sendButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.sendButtonInset.top).isActive = true
-        sendButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: Constants.sendButtonInset.bottom).isActive = true
-        sendButton.heightAnchor.constraint(equalToConstant: Constants.buttonSize.height).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: Constants.buttonSize.width).isActive = true
+        sendButton.snp.makeConstraints { make in
+            make.top.trailing.bottom.equalToSuperview().inset(Constants.sendButtonInset)
+            make.height.equalTo(Constants.buttonSize)
+            make.width.equalTo(Constants.buttonSize)
+        }
         
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        placeholderLabel.trailingAnchor.constraint(equalTo: self.sendButton.leadingAnchor,
-                                                   constant: Constants.placeholderLabelInset.right).isActive = true
-        placeholderLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-                                                  constant: Constants.placeholderLabelInset.left).isActive = true
-        placeholderLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        placeholderLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+        placeholderLabel.snp.makeConstraints { make in
+            make.trailing.equalTo( self.sendButton.snp.leading).inset(Constants.placeholderLabelInset)
+            make.leading.equalToSuperview().inset(Constants.placeholderLabelInset)
+            make.centerY.equalToSuperview()
+            make.height.equalToSuperview()
+        }
     }
     
     // MARK: - Actions

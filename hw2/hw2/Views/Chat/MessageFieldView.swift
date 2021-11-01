@@ -47,10 +47,8 @@ class MessageFieldView: UIView {
     }
     
     func makeConstraints() {
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.textFieldInset.top).isActive = true
-        textField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.textFieldInset.left).isActive = true
-        textField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.textFieldInset.right).isActive = true
-        textField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constants.textFieldInset.bottom).isActive = true
+        textField.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(Constants.textFieldInset)
+        }
     }
 }

@@ -12,10 +12,10 @@ class MessageGetCell: UITableViewCell {
     // MARK: - Constants
     
     private enum Constants {
-        static let containerViewInset = UIEdgeInsets(top: -4, left: -8, bottom: 4, right: 8)
+        static let containerViewInset = UIEdgeInsets(top: -4, left: -8, bottom: -4, right: -8)
         static let profileImageViewSize = CGSize(width: 24, height: 24)
         static let titleLabelInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -10)
-        static let dateLabelInset = UIEdgeInsets(top: 4, left: 0, bottom: -10, right: 0)
+        static let dateLabelInset = UIEdgeInsets(top: 4, left: 0, bottom: 10, right: 0)
     }
     
     private lazy var titleLabel: UILabel = {
@@ -82,34 +82,24 @@ class MessageGetCell: UITableViewCell {
     }
     
     func makeConstraints() {
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                  constant: 8).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: Constants.profileImageViewSize.height).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: Constants.profileImageViewSize.width).isActive = true
-        
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor,
-                                            constant: Constants.titleLabelInset.left).isActive = true
-        titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: Constants.titleLabelInset.right).isActive = true
-        
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor,
-                                               constant: Constants.containerViewInset.left).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor,
-                                                constant: Constants.containerViewInset.right).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor,
-                                                constant: Constants.containerViewInset.bottom).isActive = true
-        containerView.topAnchor.constraint(equalTo: titleLabel.topAnchor,
-                                                constant: Constants.containerViewInset.top).isActive = true
-        
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: Constants.dateLabelInset.top).isActive = true
-        dateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-        dateLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                          constant: Constants.dateLabelInset.bottom).isActive = true
+        profileImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().inset(8)
+            make.height.equalTo(Constants.profileImageViewSize)
+            make.width.equalTo(Constants.profileImageViewSize)
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.equalTo(profileImageView.snp.trailing).offset(Constants.titleLabelInset.left)
+            make.trailing.equalToSuperview().offset(Constants.titleLabelInset.right)
+        }
+        containerView.snp.makeConstraints { make in
+            make.edges.equalTo(titleLabel).inset(Constants.containerViewInset)
+        }
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(containerView.snp.bottom).offset(Constants.dateLabelInset.top)
+            make.trailing.leading.equalTo(containerView)
+            make.bottom.equalToSuperview().inset(Constants.dateLabelInset)
+        }
     }
 }

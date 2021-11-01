@@ -55,18 +55,15 @@ class PinnedChatCollectionViewCell: UICollectionViewCell {
     }
     
     private func makeConstraints() {
-        chatImageView.translatesAutoresizingMaskIntoConstraints = false
-        chatImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        chatImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        chatImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        chatImageView.heightAnchor.constraint(equalToConstant: Constants.iconImageSize.height).isActive = true
-        chatImageView.widthAnchor.constraint(equalToConstant: Constants.iconImageSize.width).isActive = true
+        chatImageView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(Constants.iconImageSize)
+            make.width.equalTo(Constants.iconImageSize)
+        }
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: chatImageView.bottomAnchor, constant: 8).isActive = true
-        
+        titleLabel.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(chatImageView.snp.bottom).inset(8)
+        }
     }
 }

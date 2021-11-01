@@ -14,7 +14,7 @@ class ChatViewController: UIViewController {
     private enum Constants {
         static let messageSendCellReuseIdentifier = "messageSendCellReuseIdentifier"
         static let messageGetCellReuseIdentifier = "messageGetCellReuseIdentifier"
-        static let tableViewInset = UIEdgeInsets(top: 0, left: 11, bottom: 0, right: -19)
+        static let tableViewInset = UIEdgeInsets(top: 0, left: 11, bottom: 0, right: 19)
         static let keyboardOffsetDelta: CGFloat = 25.0
     }
     
@@ -125,18 +125,15 @@ class ChatViewController: UIViewController {
     }
     
     func makeConstraints() {
-        messageFiledView.translatesAutoresizingMaskIntoConstraints = false
-        messageFiledView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        messageFiledView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        messageFiledView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        messageFiledView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+        }
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: messageFiledView.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                           constant: Constants.tableViewInset.left).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                            constant: Constants.tableViewInset.right).isActive = true
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(messageFiledView.snp.top)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Constants.tableViewInset)
+        }
     }
 }
 

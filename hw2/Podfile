@@ -7,5 +7,6 @@ target 'hw2' do
 
   # Pods for hw2
   pod "SwiftGen"
+  pod "SnapKit"
 
 end
