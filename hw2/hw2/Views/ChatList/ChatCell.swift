@@ -110,34 +110,24 @@ class ChatCell: UITableViewCell {
     }
     
     func makeConstraints() {
-        iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        iconImageView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        iconImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        iconImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        iconImageView.heightAnchor.constraint(equalToConstant: Constants.iconImageSize.height).isActive = true
-        iconImageView.widthAnchor.constraint(equalToConstant: Constants.iconImageSize.width).isActive = true
-    
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-        mainStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-        mainStackView.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 8).isActive = true
-        mainStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        iconImageView.snp.makeConstraints { make in
+            make.top.leading.bottom.equalTo(containerView)
+            make.height.equalTo(Constants.iconImageSize)
+            make.width.equalTo(Constants.iconImageSize)
+        }
+        mainStackView.snp.makeConstraints { make in
+            make.top.trailing.bottom.equalTo(containerView)
+            make.leading.equalTo(iconImageView.snp.trailing).offset(8)
+        }
         
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor
-            .constraint(equalTo: contentView.topAnchor, constant: Constants.containerViewInset.top).isActive = true
-        containerView.trailingAnchor
-            .constraint(equalTo: contentView.trailingAnchor, constant: -Constants.containerViewInset.right).isActive = true
-        containerView.leadingAnchor
-            .constraint(equalTo: contentView.leadingAnchor, constant: Constants.containerViewInset.left).isActive = true
-        containerView.bottomAnchor
-            .constraint(equalTo: separatorView.bottomAnchor, constant: -Constants.containerViewInset.bottom).isActive = true
+        containerView.snp.makeConstraints { make in
+            make.top.trailing.leading.equalToSuperview().inset(Constants.containerViewInset)
+            make.bottom.equalTo(separatorView).inset(Constants.containerViewInset)
+        }
         
-        separatorView.translatesAutoresizingMaskIntoConstraints = false
-        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        separatorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        separatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        separatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        
+        separatorView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(1)
+        }
     }
 }

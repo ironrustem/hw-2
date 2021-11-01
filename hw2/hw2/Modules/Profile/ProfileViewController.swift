@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileViewController: UIViewController {
     
     // MARK: - Constants
     
     private enum Constants {
-        static let descriptionLabelInset = UIEdgeInsets(top: 19, left: 25, bottom: 0, right: -25)
+        static let descriptionLabelInset = UIEdgeInsets(top: 19, left: 25, bottom: 0, right: 25)
         static let logoutButtonSize = CGSize(width: 143, height: 36)
     }
     
@@ -57,20 +58,15 @@ class ProfileViewController: UIViewController {
     }
     
     private func makeConstraints() {
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.topAnchor
-            .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.descriptionLabelInset.top).isActive = true
-        descriptionLabel.leadingAnchor
-            .constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.descriptionLabelInset.left).isActive = true
-        descriptionLabel.trailingAnchor
-            .constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Constants.descriptionLabelInset.right).isActive = true
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(Constants.descriptionLabelInset)
+        }
         
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        logoutButton.topAnchor
-            .constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:  view.bounds.height/6).isActive = true
-        logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoutButton.widthAnchor.constraint(equalToConstant: Constants.logoutButtonSize.width).isActive = true
-        logoutButton.heightAnchor.constraint(equalToConstant: Constants.logoutButtonSize.height).isActive = true
+        logoutButton.snp.makeConstraints { make in
+            make.top.equalTo( view.safeAreaLayoutGuide).inset(view.bounds.height/6)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(Constants.logoutButtonSize)
+        }
     }
     
     private func configNavigationBar() {

@@ -17,8 +17,8 @@ class PinnedChatsCell: UITableViewCell {
     
     private enum Constants {
         static let pinnedChatCellReuseIdentifier = "pinnedChatCellReuseIdentifier"
-        static let titleLabelInset = UIEdgeInsets(top: 11, left: 24, bottom: 0, right: -24)
-        static let collectionViewInset = UIEdgeInsets(top: 16, left: 24, bottom: -20, right: -24)
+        static let titleLabelInset = UIEdgeInsets(top: 11, left: 24, bottom: 0, right: 24)
+        static let collectionViewInset = UIEdgeInsets(top: 16, left: 24, bottom: 20, right: 24)
     }
     
     weak var delegate: PinnedChatsDelegate?
@@ -81,23 +81,21 @@ class PinnedChatsCell: UITableViewCell {
     }
     
     func makeConstraints() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.titleLabelInset.top).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.titleLabelInset.right).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.titleLabelInset.left).isActive = true
+        titleLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(Constants.titleLabelInset)
+        }
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.collectionViewInset.top).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.collectionViewInset.right).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.collectionViewInset.left).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: Constants.collectionViewInset.bottom).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: 72).isActive = true
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).inset(-Constants.collectionViewInset.top)
+            make.leading.trailing.equalToSuperview().inset(Constants.collectionViewInset)
+            make.bottom.equalTo(separatorView.snp.bottom).inset(Constants.collectionViewInset)
+            make.height.equalTo(72)
+        }
         
-        separatorView.translatesAutoresizingMaskIntoConstraints = false
-        separatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        separatorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        separatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        separatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        separatorView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }
 
