@@ -1,0 +1,33 @@
+// MARK: - Common
+Common.next = "Далее";
+Common.close = "Закрыть";
+Common.done = "Готово";
+Common.cancel = "Отменить";
+Common.no = "Нет";
+Common.yes = "Да";
+Common.save = "Сохранить";
+Common.remove = "Удалить";
+Common.removeAll = "Удалить все";
+Common.cancelRemoval = "Не удалять";
+Common.confirmRemoval = "Да, удалить";
+Common.update = "Обновить";
+Common.logout = "Выйти";
+Common.find = "Найти";
+Common.choose = "Выбрать";
+Common.edit = "Править";
+Common.loadingTitle = "Загрузка, спасибо\nза ожидание";
+Common.error = "Ошибка";
+Common.ok = "Ок";
+Common.reset = "Сбросить";
+Common.apply = "Применить";
+
+// MARK: - Chat
+Chat.MessageField.placeHolder = "Type your message here...";
+
+// MARK: - ChatList
+ChatList.title = "Messages";
+ChatList.pinned = "Pinned";
+ChatList.searchController = "Who do you want to chat with?";
+
+// MARK: - Profile
+Profile.logout = "Logout";
